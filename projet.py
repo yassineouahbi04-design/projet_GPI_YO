@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 """ On importe des modules nécessaires (sys pour la gestion des arguments, math pour les calculs de distance). """ 
-import sys
-import math 
+import sys, math 
 
 # ==========================================
 # CONFIGURATION DES SITES DE LIAISON ET CRITÈRES DES LIAISONS HYDROGÈNE (A, U, G, C). 
@@ -102,7 +101,7 @@ class RNA_molecule:
         sites1 = BOND_SITES[nuc1.type] # On accède au dictionnaire BOND_SITES pour obtenir les sites de liaison du nucléotide 1 en fonction de son type (A, U, G, C).
         sites2 = BOND_SITES[nuc2.type]
 
-        """Possibilité 1 : Donneur du nuc1 vers accepteur du nuc2"""
+        """Possibilité 1 : Donneur du nt1 vers accepteur du nt2"""
         for d_name in sites1['donors']:
             for a_name in sites2['acceptors']:
                 if d_name in nuc1.atoms and a_name in nuc2.atoms: # On vérifie que les atomes donneurs et accepteurs existent bien dans les nucléotides respectifs avant de calculer la distance.
@@ -110,7 +109,7 @@ class RNA_molecule:
                     if DIST_MIN <= dist <= DIST_MAX:
                         bonds_count += 1
 
-        """Possibilité 2 : Donneur du nuc2 vers accepteur du nuc1"""
+        """Possibilité 2 : Donneur du nt2 vers accepteur du nt1"""
         for d_name in sites2['donors']:
             for a_name in sites1['acceptors']:
                 if d_name in nuc2.atoms and a_name in nuc1.atoms:
@@ -184,7 +183,7 @@ class RNA_molecule:
 
 
 # ==========================================
-# EXECUTABILITE DU SCRIPT
+# EXECUTION DU SCRIPT
 # ==========================================
 if __name__ == "__main__":
     """ On vérifie qu'un fichier a bien été passé en paramètre dans la console. """
